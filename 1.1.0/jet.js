@@ -62,4 +62,3 @@ const jet = {
     return val
   }
 };
-window._ = jet
