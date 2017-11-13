@@ -4,7 +4,7 @@ const jet = {
    * @type {dictionary}
    */
   meta: { 
-    version: '1.2.0-b1',
+    version: '1.2.0-b2',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
@@ -87,6 +87,11 @@ const jet = {
       return n
     },
 
+    /**
+     * Gets a number's factorial
+     * @param  {integer} n The number
+     * @return {integer}   The factorial
+     */
     factorial: function (n) {
       if (n < 0) {
         return 0
