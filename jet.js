@@ -1,11 +1,11 @@
 const jet = {
   /**
    * Simple metadata
-   * @type {object}
+   * @type {dictionary}
    */
   meta: { 
-    version: '1.1.2',
-    date: '11/9/2017',
+    version: '1.2.0-b1',
+    date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
   },
@@ -28,13 +28,13 @@ const jet = {
    * @return {dictionary} The keys and values of the variables
    */
   getHash: function () {
-    var val, loc, li
+    let val, loc, li
     val = {}
     loc = window.location.search.replace('?', '')
     li = loc.split('&')
 
     for (var i = li.length - 1; i >= 0; i--) {
-      var spl = li[i].split('=')
+      let spl = li[i].split('=')
       val[spl[0]] = spl[1].replace(/\+/g, ' ')
     }
     return val
@@ -46,13 +46,13 @@ const jet = {
    * @return {dictionary}      The keys and values of the variables
    */
   getForm: function (form) {
-    var val = {}
+    let val = {}
     let valList = ['color', 'email', 'file', 'hidden', 'password', 'search', 'tel', 'time', 'text', 'url', 'week']
     let dateList = ['date', 'datetime-local', 'month']
     let decList = ['number', 'range']
 
     for (var i = form.length - 1; i >= 0; i--) {
-      var el = form[i]
+      let el = form[i]
       if (el.type === 'checkbox') {
         val[el.name] = el.checked
       } else if (el.type === 'radio' && el.checked) {
@@ -66,6 +66,39 @@ const jet = {
       }
     }
     return val
+  },
+
+  /**
+   * Math functions
+   * @type {dictionary}
+   */
+  math: {
+    /**
+     * Random range inclusive
+     * @param  {integer} min Minimum outcome
+     * @param  {integer} max Maximum outcome
+     * @return {integer}     The random number
+     */
+    rand: function (min=0, max=1) {
+      let n = Math.random()
+      n *= max
+      n += min
+      n = Math.round(n)
+      return n
+    },
+
+    factorial: function (n) {
+      if (n < 0) {
+        return 0
+      } else if(n === 0) {
+        return 1
+      } else {
+        for (var i = n - 1; i > 0; i--) {
+          n *= i
+        }
+        return n
+      }
+    }
   }
 };
 window._ = jet
