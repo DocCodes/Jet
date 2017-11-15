@@ -4,7 +4,7 @@ const jet = {
    * @type {dictionary}
    */
   meta: { 
-    version: '1.2.0-b3',
+    version: '1.2.0',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
@@ -91,7 +91,7 @@ const jet = {
      * The golden ratio
      * @type {decimal}
      */
-    GOLD: 987/610,
+    GOLD: (Math.sqrt(5)+1)/2,
 
     /**
      * Random range inclusive
