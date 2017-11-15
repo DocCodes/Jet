@@ -4,7 +4,7 @@ const jet = {
    * @type {dictionary}
    */
   meta: { 
-    version: '1.2.0-b2',
+    version: '1.2.0-b3',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
@@ -69,10 +69,30 @@ const jet = {
   },
 
   /**
+   * Iterates through an object's keys
+   * @param  {object}   obj  The object with keys
+   * @param  {function} func The function to iterate through
+   */
+  iterKeys: function (obj, func) {
+    keys = Object.keys(obj)
+    for (var i = keys.length - 1; i >= 0; i--) {
+      k = keys[i]
+      v = obj[k]
+      func(k, v)
+    }
+  },
+
+  /**
    * Math functions
    * @type {dictionary}
    */
   math: {
+    /**
+     * The golden ratio
+     * @type {decimal}
+     */
+    GOLD: 987/610,
+
     /**
      * Random range inclusive
      * @param  {integer} min Minimum outcome
