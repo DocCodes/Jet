@@ -3,8 +3,8 @@ const jet = {
    * Simple metadata
    * @type {dictionary}
    */
-  meta: {
-    version: '2.0.0',
+  meta: { 
+    version: '1.2.0',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
