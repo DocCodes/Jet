@@ -1,10 +1,12 @@
 const jet = {
   /**
    * Simple metadata
+   * @since 1.1.2
    * @type {dictionary}
    */
   meta: {
-    version: '2.0.0',
+    version: '2.0.1',
+    scheme: 'https://semver.org/',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
@@ -12,6 +14,7 @@ const jet = {
 
   /**
    * Gets the GET values in the url
+   * @since 1.0.0
    * @return {dictionary} The keys and values of the variables
    */
   getHash: function () {
@@ -29,6 +32,7 @@ const jet = {
 
   /**
    * Gets values from a form
+   * @since 1.1.0
    * @param  {form}       form The form element full of inputs
    * @return {dictionary}      The keys and values of the variables
    */
@@ -57,6 +61,7 @@ const jet = {
 
   /**
    * Iterates through an object's keys
+   * @since 1.2.0
    * @param  {object}   obj  The object with keys
    * @param  {function} func The function to iterate through
    */
@@ -71,17 +76,20 @@ const jet = {
 
   /**
    * Math functions
+   * @since 1.2.0
    * @type {dictionary}
    */
   math: {
     /**
      * The golden ratio
+     * @since 1.2.0
      * @type {decimal}
      */
     GOLD: (Math.sqrt(5)+1)/2,
 
     /**
      * Random range inclusive
+     * @since 1.2.0
      * @param  {integer} min Minimum outcome
      * @param  {integer} max Maximum outcome
      * @return {integer}     The random number
@@ -96,6 +104,7 @@ const jet = {
 
     /**
      * Gets a number's factorial
+     * @since 1.2.0
      * @param  {integer} n The number
      * @return {integer}   The factorial
      */
