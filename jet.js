@@ -3,24 +3,11 @@ const jet = {
    * Simple metadata
    * @type {dictionary}
    */
-  meta: { 
-    version: '1.2.0',
+  meta: {
+    version: '2.0.0',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
-  },
-
-  /**
-   * String substitution similar to python
-   * @param  {string}     str  The raw string
-   * @param  {dictionary} args The replacement arguments
-   * @return {string}          The substituted string
-   */
-  format: function (str, args) {
-    str = str.replace(/%{[0-z]*}/g, function (k) {
-      return args[k.replace(/[^0-z]/g, '')]
-    })
-    return str
   },
 
   /**
