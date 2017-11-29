@@ -5,7 +5,7 @@ const jet = {
    * @type {dictionary}
    */
   meta: {
-    version: '2.0.1',
+    version: '2.0.2',
     scheme: 'https://semver.org/',
     date: '11/13/2017',
     author: 'Evan Young',
@@ -121,5 +121,5 @@ const jet = {
       }
     }
   }
-};
+}
 window._ = jet
