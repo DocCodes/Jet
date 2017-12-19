@@ -1,3 +1,113 @@
+/*
+██████  ██████   ██████  ████████  ██████  ████████ ██    ██ ██████  ███████
+██   ██ ██   ██ ██    ██    ██    ██    ██    ██     ██  ██  ██   ██ ██
+██████  ██████  ██    ██    ██    ██    ██    ██      ████   ██████  █████
+██      ██   ██ ██    ██    ██    ██    ██    ██       ██    ██      ██
+██      ██   ██  ██████     ██     ██████     ██       ██    ██      ███████
+*/
+// <region> String
+/**
+ * Gets a string's title
+ * @since 2.2.0
+ * @return {string}      The titled string
+ */
+if (String.toTitleCase === undefined) {
+  String.prototype.toTitleCase = function () {
+    return this.toLowerCase().split(' ').map(function(word) {
+      return (word.charAt(0).toUpperCase())+(word.slice(1))
+    }).join(' ')
+  }
+}
+// </region>
+
+// <region> Numbers
+/**
+* Limits an integer to a specific range
+* @since 2.2.0
+* @param  {int} min The lower bound
+* @param  {int} max The upper bound
+* @return {int}     The number in range
+*/
+Number.prototype.clamp = function(min = 0, max = 1000000) {
+  return Math.min(Math.max(this, min), max);
+}
+// </region>
+
+// <region> Math
+/**
+ * The golden ratio
+ * @since 1.2.0
+ * @type {decimal}
+ */
+if (Math.GOLDEN === undefined) {
+  Math.GOLDEN = (Math.sqrt(5)+1)/2
+}
+
+/**
+ * Random range inclusive
+ * @since 1.2.0
+ * @param  {integer} min   Minimum outcome
+ * @param  {integer} max   Maximum outcome
+ * @param  {boolean} round Should it round
+ * @return {integer}       The random number
+ */
+if (Math.randRange === undefined) {
+  Math.randRange = function (min = 0, max = 1, round = True) {
+    let n = Math.random()
+    n *= max
+    n += min
+    n = Math.round(n)
+    return n
+  }
+}
+
+/**
+ * Gets a number's factorial
+ * @since 1.2.0
+ * @param  {integer} n The number
+ * @return {integer}   The factorial
+ */
+if (Math.factorial === undefined) {
+  Math.factorial = function (n) {
+    if (n < 0) {
+      return 0
+    } else if(n === 0) {
+      return 1
+    } else {
+      for (var i = n - 1; i > 0; i--) {
+        n *= i
+      }
+      return n
+    }
+  }
+}
+// </region>
+
+// <region> Location
+/**
+ * Gets the URL's query string
+ * @since 2.2.0
+ * @return {dictionary} The query's keys and values
+ */
+Location.prototype.query = (() => {
+  let qs = document.location.search.split('+').join(' ')
+  let re = /[?&]?([^=]+)=([^&]*)/g
+  let params = {}
+  let tokens
+  while (tokens = re.exec(qs)) {
+    params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2])
+  }
+  return params
+})()
+// </region>
+
+/*
+     ██ ███████ ████████
+     ██ ██         ██
+     ██ █████      ██
+██   ██ ██         ██
+ █████  ███████    ██
+*/
 const jet = {
   /**
    * Simple metadata
@@ -5,29 +115,11 @@ const jet = {
    * @type {dictionary}
    */
   meta: {
-    version: '2.0.2',
+    version: '2.2.0',
     scheme: 'https://semver.org/',
     date: '11/13/2017',
     author: 'Evan Young',
     copyright: 'Copyright 2017 Evan Young'
-  },
-
-  /**
-   * Gets the GET values in the url
-   * @since 1.0.0
-   * @return {dictionary} The keys and values of the variables
-   */
-  getHash: function () {
-    let val, loc, li
-    val = {}
-    loc = window.location.search.replace('?', '')
-    li = loc.split('&')
-
-    for (var i = li.length - 1; i >= 0; i--) {
-      let spl = li[i].split('=')
-      val[spl[0]] = spl[1].replace(/\+/g, ' ')
-    }
-    return val
   },
 
   /**
@@ -57,69 +149,6 @@ const jet = {
       }
     }
     return val
-  },
-
-  /**
-   * Iterates through an object's keys
-   * @since 1.2.0
-   * @param  {object}   obj  The object with keys
-   * @param  {function} func The function to iterate through
-   */
-  iterKeys: function (obj, func) {
-    keys = Object.keys(obj)
-    for (var i = keys.length - 1; i >= 0; i--) {
-      k = keys[i]
-      v = obj[k]
-      func(k, v)
-    }
-  },
-
-  /**
-   * Math functions
-   * @since 1.2.0
-   * @type {dictionary}
-   */
-  math: {
-    /**
-     * The golden ratio
-     * @since 1.2.0
-     * @type {decimal}
-     */
-    GOLD: (Math.sqrt(5)+1)/2,
-
-    /**
-     * Random range inclusive
-     * @since 1.2.0
-     * @param  {integer} min Minimum outcome
-     * @param  {integer} max Maximum outcome
-     * @return {integer}     The random number
-     */
-    rand: function (min=0, max=1) {
-      let n = Math.random()
-      n *= max
-      n += min
-      n = Math.round(n)
-      return n
-    },
-
-    /**
-     * Gets a number's factorial
-     * @since 1.2.0
-     * @param  {integer} n The number
-     * @return {integer}   The factorial
-     */
-    factorial: function (n) {
-      if (n < 0) {
-        return 0
-      } else if(n === 0) {
-        return 1
-      } else {
-        for (var i = n - 1; i > 0; i--) {
-          n *= i
-        }
-        return n
-      }
-    }
   }
 }
 window._ = jet
